@@ -108,13 +108,11 @@ jobs:
         with:
           languages: java
 
-      - name: Set up Maven
-        uses: stCarolas/setup-maven@v4.3
-        with:
-          maven-version: 3.8.2
-
-      - name: Maven clean and test
-        run: mvn clean compile
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+      
+      - name: Gradle Build
+        run: gradle assemble --parallel
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
